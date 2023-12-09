@@ -1,0 +1,68 @@
+<div>
+  <h2>Formulario de Cliente</h2>
+  <form (ngSubmit)="submitForm()" #clienteForm="ngForm">
+    <div>
+      <label for="identificacion">Identificación:</label>
+      <mat-select
+        placeholder="Seleccionar Tipo de Identificación"
+        [(ngModel)]="cliente.identificacion"
+        name="identificacion"
+        required
+      >
+        <!-- Mostrar el tipo de identificación actual en modo de edición -->
+        <mat-option *ngIf="isEditing" [value]="cliente.identificacion">
+          {{ cliente.identificacion }}
+        </mat-option>
+
+        <!-- Mostrar todas las opciones disponibles -->
+        <mat-option
+          *ngFor="let tipos of tiposIdentificacion"
+          [value]="tipos.descripcion"
+        >
+          {{ tipos.descripcion }}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div>
+      <label for="razonSocial">Razón Social:</label>
+      <input
+        type="text"
+        id="razonSocial"
+        [(ngModel)]="cliente.razonSocial"
+        name="razonSocial"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="fechaRegistro">Fecha Registro:</label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        id="fechaRegistro"
+        [(ngModel)]="cliente.fechaRegistro"
+        name="fechaRegistro"
+        required
+        placeholder="yyyy-MM-dd"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div>
+      <label for="estado">Estado:</label>
+      <input
+        type="text"
+        id="estado"
+        [(ngModel)]="cliente.estado"
+        name="estado"
+        required
+      />
+    </div>
+
+    <!-- Botones de acción -->
+    <div>
+      <button type="submit" [disabled]="clienteForm.invalid">Guardar</button>
+      <button type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

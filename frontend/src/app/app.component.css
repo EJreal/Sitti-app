@@ -1,0 +1,33 @@
+/* app.component.css */
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.app-title {
+  margin-left: 10px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #eee;
+}
+
+.active {
+  background-color: #e0e0e0;
+}

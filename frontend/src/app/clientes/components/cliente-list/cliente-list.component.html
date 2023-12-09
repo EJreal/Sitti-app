@@ -1,0 +1,42 @@
+<div>
+  <button type="button" (click)="loadClientes()">Recargar Clientes</button>
+  <button type="button" routerLink="/clientes/nuevo">Nuevo Cliente</button>
+</div>
+<main>
+  <div>
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Razón Social</th>
+          <th>Fecha Registro</th>
+          <th>Estado</th>
+          <th>Tipo de identificacion</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.cliente }}</td>
+          <td>{{ cliente.identificacion }}</td>
+          <td>{{ cliente.razonSocial }}</td>
+          <td>{{ cliente.fechaRegistro | date : "short" }}</td>
+          <td>{{ cliente.estado }}</td>
+          <td>{{ cliente.tipoIdentificacion }}</td>
+          <td>
+            <button
+              type="button"
+              [routerLink]="['/clientes/editar/', cliente.cliente]"
+            >
+              Editar
+            </button>
+            <button type="button" (click)="deleteCliente(cliente.cliente!)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
