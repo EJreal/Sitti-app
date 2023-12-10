@@ -2,7 +2,7 @@
 export class Factura {
   consecutivo?: number;
   fecha?: Date;
-  cliente?: string;
+  cliente?: number;
 }
 
 export class FacturaDetalle {

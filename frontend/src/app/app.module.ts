@@ -4,12 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables';
 import { FormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
-
-
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ClienteListComponent } from './clientes/components/cliente-list/cliente-list.component';
 import { ClienteFormComponent } from './clientes/components/cliente-form/cliente-form.component';
-import { ClienteService, TipoIdentificacionService } from './clientes/services/cliente.service';
+import {
+  ClienteService,
+  TipoIdentificacionService,
+} from './clientes/services/cliente.service';
 
 import { ProductoListComponent } from './productos/components/producto-list/producto-list.component';
 import { ProductoFormComponent } from './productos/components/producto-form/producto-form.component';
@@ -30,7 +31,13 @@ import { ProductoService } from './productos/services/producto.service';
 
 import { UsuarioListComponent } from './usuarios/components/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './usuarios/components/usuario-form/usuario-form.component';
-import { UsuarioService, PerfilService } from './usuarios/services/usuario.service';
+import {
+  UsuarioService,
+  PerfilService,
+} from './usuarios/services/usuario.service';
+
+import { FacturacionFormComponent } from './facturacion/components/facturacion-form/facturacion-form.component';
+import { FacturacionService } from './facturacion/services/facturacion.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +48,7 @@ import { UsuarioService, PerfilService } from './usuarios/services/usuario.servi
     ClienteFormComponent,
     ProductoFormComponent,
     UsuarioFormComponent,
+    FacturacionFormComponent,
   ],
   imports: [
     MatNativeDateModule,
@@ -66,10 +74,18 @@ import { UsuarioService, PerfilService } from './usuarios/services/usuario.servi
       { path: 'usuarios', component: UsuarioListComponent },
       { path: 'usuarios/nuevo', component: UsuarioFormComponent },
       { path: 'usuarios/editar/:id', component: UsuarioFormComponent },
+      { path: 'facturacion', component: FacturacionFormComponent },
       { path: '', redirectTo: '/clientes', pathMatch: 'full' },
     ]),
   ],
-  providers: [ClienteService, ProductoService, UsuarioService, TipoIdentificacionService, PerfilService],
+  providers: [
+    ClienteService,
+    ProductoService,
+    UsuarioService,
+    TipoIdentificacionService,
+    PerfilService,
+    FacturacionService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

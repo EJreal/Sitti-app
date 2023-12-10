@@ -1,4 +1,3 @@
-// app/usuarios/services/usuario.service.ts
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +8,7 @@ import { Perfil, Usuario } from '../../models/usuario.model';
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/usuarios'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://localhost:8080/usuarios'; 
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +41,7 @@ export class UsuarioService {
 })
 export class PerfilService {
 
-  private apiUrl = 'http://localhost:8080/perfiles'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://localhost:8080/perfiles';
 
   constructor(private http: HttpClient) {}
 

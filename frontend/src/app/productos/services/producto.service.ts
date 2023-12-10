@@ -1,4 +1,3 @@
-// app/productos/services/producto.service.ts
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +8,7 @@ import { Producto } from '../../models/producto.model';
   providedIn: 'root',
 })
 export class ProductoService {
-  private apiUrl = 'http://localhost:8080/productos'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://localhost:8080/productos'; 
 
   constructor(private http: HttpClient) {}
 

@@ -1,0 +1,113 @@
+
+<div class="container mt-4">
+  <h2>Formulario de Facturación</h2>
+
+  <!-- Sección para buscar y mostrar información del cliente -->
+  <div class="form-group">
+    <label for="tipoIdentificacion">Tipo de Identificación</label>
+    <select
+      [(ngModel)]="tipoIdentificacion"
+      name="tipoIdentificacion"
+      class="form-control"
+    >
+      <option
+        *ngFor="let tipo of tiposIdentificacion"
+        [value]="tipo.tipoIdentificacion"
+      >
+        {{ tipo.abreviatura }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="identificacion">Identificación</label>
+    <input
+    type="text"
+      [(ngModel)]="identificacion"
+      name="identificacion"
+      class="form-control"
+    />
+    <button (click)="buscarCliente()" class="btn btn-primary mt-2">
+      Buscar Cliente
+    </button>
+  </div>
+
+  <!-- Mostrar información del cliente encontrado -->
+  <div *ngIf="selectedCliente">
+    <h4>Información del Cliente</h4>
+    <p><strong>Identificación:</strong> {{ selectedCliente.identificacion }}</p>
+    <p><strong>Razón Social:</strong> {{ selectedCliente.razonSocial }}</p>
+  </div>
+
+  <!-- Mostrar total facturado -->
+  <div class="mt-3">
+    <h5>Total Facturado: {{ calcularTotalFacturado() }}</h5>
+  </div>
+
+  <!-- Sección para buscar y agregar productos -->
+  <div class="form-group mt-3">
+    <label for="producto">Código del Producto</label>
+    <select [(ngModel)]="selectedProducto" name="producto" class="form-control">
+      <option *ngFor="let prod of productos" [ngValue]="prod">
+        {{ prod.id }} - {{ prod.nombre }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="cantidad">Cantidad</label>
+    <input
+    type="number"
+      [(ngModel)]="cantidad"
+      name="cantidad"
+      class="form-control"
+    />
+  </div>
+
+  <button (click)="agregarProducto()" class="btn btn-success">
+    Agregar Producto
+  </button>
+
+  <!-- Sección para insertar productos en la grilla -->
+  <div class="mt-4">
+    <h4>Productos a Facturar</h4>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Código del Producto</th>
+          <th>Nombre</th>
+          <th>Valor Unitario</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of facturaItems; let i = index">
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.valorUnitario }}</td>
+          <td>
+            <input
+              [(ngModel)]="item.cantidad"
+              name="cantidad-{{ i }}"
+              class="form-control"
+              (change)="calcularTotalFacturado()"
+            />
+          </td>
+          <td>{{ item.cantidad! * item.valorUnitario! }}</td>
+          <td>
+            <button (click)="eliminarItem(i)" class="btn btn-danger">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Botón de Guardar -->
+  <button (click)="guardarFactura()" class="btn btn-primary mt-3">
+    Guardar Factura
+  </button>
+</div>

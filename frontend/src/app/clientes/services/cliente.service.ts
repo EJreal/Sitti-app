@@ -1,4 +1,3 @@
-// app/clientes/services/cliente.service.ts
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +8,7 @@ import { Cliente, TipoIdentificacion } from '../../models/cliente.model';
   providedIn: 'root',
 })
 export class ClienteService {
-  private apiUrl = 'http://localhost:8080/clientes'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://localhost:8080/clientes'; 
 
   constructor(private http: HttpClient) {}
 
@@ -43,7 +42,7 @@ export class ClienteService {
 })
 export class TipoIdentificacionService {
 
-  private apiUrl = 'http://localhost:8080/tipos-identificaciones'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://localhost:8080/tipos-identificaciones'; 
 
   constructor(private http: HttpClient) {}
 
