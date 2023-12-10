@@ -1,6 +1,6 @@
-// app/productos/components/producto-list/producto-list.component.ts
-
+// producto-list.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Producto } from '../../../models/producto.model';
 import { ProductoService } from '../../services/producto.service';
 
@@ -10,17 +10,33 @@ import { ProductoService } from '../../services/producto.service';
   styleUrls: ['./producto-list.component.css'],
 })
 export class ProductoListComponent implements OnInit {
-  productos: Producto[] = [];
+  productos: Producto[] = []; // Inicializar con una lista vacía o cargar desde el servicio
+  dtOptions: DataTables.Settings = {};
 
-  constructor(private productoService: ProductoService) {}
+  constructor(
+    private productoService: ProductoService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadProductos();
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+    };
   }
 
-  private loadProductos() {
+  loadProductos() {
     this.productoService.getAllProductos().subscribe((productos) => {
       this.productos = productos;
+    });
+  }
+
+  deleteProducto(productoId: number) {
+    // Lógica para eliminar producto
+    this.productoService.deleteProducto(productoId).subscribe(() => {
+      this.loadProductos(); // Recargar la lista después de la eliminación
     });
   }
 }

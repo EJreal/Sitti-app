@@ -30,7 +30,7 @@ import { ProductoService } from './productos/services/producto.service';
 
 import { UsuarioListComponent } from './usuarios/components/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './usuarios/components/usuario-form/usuario-form.component';
-import { UsuarioService } from './usuarios/services/usuario.service';
+import { UsuarioService, PerfilService } from './usuarios/services/usuario.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,8 @@ import { UsuarioService } from './usuarios/services/usuario.service';
     ProductoListComponent,
     UsuarioListComponent,
     ClienteFormComponent,
+    ProductoFormComponent,
+    UsuarioFormComponent,
   ],
   imports: [
     MatNativeDateModule,
@@ -60,14 +62,14 @@ import { UsuarioService } from './usuarios/services/usuario.service';
       { path: 'clientes/editar/:id', component: ClienteFormComponent },
       { path: 'productos', component: ProductoListComponent },
       { path: 'productos/nuevo', component: ProductoFormComponent },
-      { path: 'productos/editar/:id', component: ClienteFormComponent },
+      { path: 'productos/editar/:id', component: ProductoFormComponent },
       { path: 'usuarios', component: UsuarioListComponent },
       { path: 'usuarios/nuevo', component: UsuarioFormComponent },
-      { path: 'usuarios/editar/:id', component: ClienteFormComponent },
+      { path: 'usuarios/editar/:id', component: UsuarioFormComponent },
       { path: '', redirectTo: '/clientes', pathMatch: 'full' },
     ]),
   ],
-  providers: [ClienteService, ProductoService, UsuarioService, TipoIdentificacionService],
+  providers: [ClienteService, ProductoService, UsuarioService, TipoIdentificacionService, PerfilService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

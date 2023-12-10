@@ -1,8 +1,43 @@
+<!-- producto-list.component.html -->
+
 <div>
-  <h2>Lista de Productos</h2>
-  <ul>
-    <li *ngFor="let producto of productos">
-      {{ producto.id }} - {{ producto.nombre }} - {{ producto.estado }} - {{ producto.valorUnitario }}
-    </li>
-  </ul>
+  <button type="button" (click)="loadProductos()">Recargar Productos</button>
+  <button type="button" routerLink="/productos/nuevo">Nuevo Producto</button>
 </div>
+
+<main>
+  <div>
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Valor Unitario</th>
+          <!-- Agrega más columnas según tus necesidades -->
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos">
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.estado }}</td>
+          <td>{{ producto.valorUnitario }}</td>
+          <!-- Agrega más celdas según tus necesidades -->
+          <td>
+            <button
+              type="button"
+              [routerLink]="['/productos/editar', producto.id]"
+            >
+              Editar
+            </button>
+            <button type="button" (click)="deleteProducto(producto.id!)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

@@ -43,9 +43,13 @@ export class ClienteFormComponent implements OnInit {
     });
   }
 
+  getTipoIdentificacionDescripcion(id: number) {
+    const tipo = this.tiposIdentificacion.find(t => t.tipoIdentificacion === id);
+    return tipo ? tipo.descripcion : '';
+  }
+
   submitForm() {
     if (this.isEditing) {
-      console.log('editando');
       this.clienteService
         .updateCliente(this.cliente.cliente!, this.cliente)
         .subscribe(() => {

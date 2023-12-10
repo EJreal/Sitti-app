@@ -8,6 +8,7 @@ import java.util.List;
 import com.sittiapp.backend.services.*;
 import com.sittiapp.backend.models.*;
 
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -28,6 +29,11 @@ public class UsuarioController {
     @PostMapping
     public void saveUsuario(@RequestBody Usuario usuario) {
         usuarioService.saveUsuario(usuario);
+    }
+
+    @PutMapping("/{id}")
+    public void updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        usuarioService.updateUsuario(id, usuario);
     }
 
     @DeleteMapping("/{id}")

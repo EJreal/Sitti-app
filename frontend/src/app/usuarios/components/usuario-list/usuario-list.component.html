@@ -1,8 +1,43 @@
+<!-- usuario-list.component.html -->
+
 <div>
-  <h2>Lista de Usuarios</h2>
-  <ul>
-    <li *ngFor="let usuario of usuarios">
-      {{ usuario.nombre }} - {{ usuario.apellido }}
-    </li>
-  </ul>
+  <button type="button" (click)="loadUsuarios()">Recargar Usuarios</button>
+  <button type="button" routerLink="/usuarios/nuevo">Nuevo Usuario</button>
 </div>
+
+<main>
+  <div>
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>ID Usuario</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Usuario</th>
+          <th>Perfil</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.idUsuario }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellido }}</td>
+          <td>{{ usuario.usuario }}</td>
+          <td>{{ usuario.idPerfil }}</td>
+          <td>
+            <button
+              type="button"
+              [routerLink]="['/usuarios/editar', usuario.idUsuario]"
+            >
+              Editar
+            </button>
+            <button type="button" (click)="deleteUsuario(usuario.idUsuario!)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

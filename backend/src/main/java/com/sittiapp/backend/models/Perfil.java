@@ -1,7 +1,9 @@
 package com.sittiapp.backend.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("perfil")
 public class Perfil {
     @Id
     private Long idPerfil;

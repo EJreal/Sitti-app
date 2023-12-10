@@ -1,1 +1,72 @@
-<p>usuario-form works!</p>
+<!-- usuario-form.component.html -->
+
+<form (ngSubmit)="submitForm()" #usuarioForm="ngForm">
+  <!-- Campos del formulario -->
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input
+      type="text"
+      id="nombre"
+      name="nombre"
+      [(ngModel)]="usuario.nombre"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="apellido">Apellido:</label>
+    <input
+      type="text"
+      id="apellido"
+      name="apellido"
+      [(ngModel)]="usuario.apellido"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="usuario">Usuario:</label>
+    <input
+      type="text"
+      id="usuario"
+      name="usuario"
+      [(ngModel)]="usuario.usuario"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="contrasena">Contraseña:</label>
+    <input
+      type="password"
+      id="contrasena"
+      name="contrasena"
+      [(ngModel)]="usuario.contrasena"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="idPerfil">Perfil:</label>
+    <mat-select
+      placeholder="Seleccionar perfil"
+      id="idPerfil"
+      name="idPerfil"
+      [(ngModel)]="usuario.idPerfil"
+      required
+    >
+      <mat-option *ngIf="isEditing" [value]="usuario.idPerfil">
+        {{ getPerfilNombre(usuario.idPerfil!) }}
+      </mat-option>
+
+      <mat-option *ngFor="let perfil of perfiles" [value]="perfil.idPerfil">{{
+        perfil.nombre
+      }}</mat-option>
+    </mat-select>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="usuarioForm.invalid">Guardar</button>
+    <button type="button" (click)="cancel()">Cancelar</button>
+  </div>
+</form>

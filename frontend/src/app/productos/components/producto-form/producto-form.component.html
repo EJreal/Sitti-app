@@ -1,1 +1,30 @@
-<p>producto-form works!</p>
+<!-- producto-form.component.html -->
+
+<form (ngSubmit)="submitForm()" #productoForm="ngForm">
+
+    <!-- Campos del formulario -->
+    <div>
+      <label for="nombre">Nombre del Producto:</label>
+      <input type="text" id="nombre" name="nombre" [(ngModel)]="producto.nombre" required>
+    </div>
+  
+    <div>
+      <label for="estado">Estado:</label>
+      <input type="text" id="estado" name="estado" [(ngModel)]="producto.estado" required>
+    </div>
+   
+    <div>
+      <label for="valorUnitario">Valor Unitario:</label>
+      <input type="number" id="valorUnitario" name="valorUnitario" [(ngModel)]="producto.valorUnitario" required>
+    </div>
+  
+    <!-- Otros campos del producto -->
+  
+    <!-- Botones de acción -->
+    <div>
+      <button type="submit" [disabled]="productoForm.invalid">Guardar</button>
+      <button type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  
+  </form>
+  

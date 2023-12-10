@@ -3,6 +3,7 @@ package com.sittiapp.backend.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Table("factura_detalle")
 public class FacturaDetalle {
     @Id

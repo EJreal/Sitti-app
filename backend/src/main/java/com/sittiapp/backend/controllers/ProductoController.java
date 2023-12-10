@@ -1,11 +1,7 @@
 package com.sittiapp.backend.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Optional;
 
 import java.util.List;
 
@@ -25,21 +21,21 @@ public class ProductoController {
         return productoService.getAllProductos();
     }
 
-    public ResponseEntity<Producto> getProductoById(@PathVariable Long id) {
-        Optional<Producto> productoOptional = productoService.getProductoById(id);
-
-        if (productoOptional.isPresent()) {
-            Producto producto = productoOptional.get();
-            return new ResponseEntity<>(producto, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/{id}")
+    public Producto getProductoById(@PathVariable Long id) {
+        return productoService.getProductoById(id);
     }
 
     @PostMapping
     public void saveProducto(@RequestBody Producto producto) {
         productoService.saveProducto(producto);
     }
+
+    @PutMapping("/{id}")
+    public void updateProducto(@PathVariable Long id, @RequestBody Producto producto) {
+        productoService.updateProducto(id, producto);
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteProducto(@PathVariable Long id) {

@@ -1,13 +1,13 @@
 export class Usuario {
-  id?: number;
+  idUsuario?: number;
   nombre?: string;
   apellido?: string;
   usuario?: string;
-  contraseña?: string;
-  perfil?: number;
+  contrasena?: string;
+  idPerfil?: number;
 }
 
 export class Perfil {
-  id?: number;
+  idPerfil?: number;
   nombre?: string;
 }

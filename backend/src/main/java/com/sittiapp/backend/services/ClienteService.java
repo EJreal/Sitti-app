@@ -27,28 +27,10 @@ public class ClienteService {
     }
 
     public void updateCliente(Long id, Cliente cliente) {
-        // Verifica si el cliente con el ID dado existe
         if (clienteRepository.existsById(id)) {
-            // Obtén el cliente existente
-            Cliente clienteExistente = clienteRepository.findById(id).orElse(null);
-
-            if (clienteExistente != null) {
-                // Actualiza los datos del cliente
-                clienteExistente.setIdentificacion(cliente.getIdentificacion());
-                clienteExistente.setRazonSocial(cliente.getRazonSocial());
-                clienteExistente.setFechaRegistro(cliente.getFechaRegistro());
-                clienteExistente.setEstado(cliente.getEstado());
-
-                // Si el tipo de identificación ha cambiado, actualiza también el tipoIdentificacion
-                if (!clienteExistente.getIdentificacion().equals(cliente.getIdentificacion())) {
-                    clienteExistente.setTipoIdentificacion(cliente.getTipoIdentificacion());
-                }
-
-                // Guarda el cliente actualizado
-                clienteRepository.save(clienteExistente);
-            }
+            cliente.setCliente(id);
+            clienteRepository.save(cliente);
         }
-        // Manejo adicional si el cliente no existe, por ejemplo, lanzar una excepción o realizar otra acción.
     }
 
     public void deleteCliente(Long id) {

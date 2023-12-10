@@ -2,26 +2,37 @@
   <h2>Formulario de Cliente</h2>
   <form (ngSubmit)="submitForm()" #clienteForm="ngForm">
     <div>
-      <label for="identificacion">Identificación:</label>
+      <label for="tipoIdentificacion">Tipo de Identificación:</label>
       <mat-select
         placeholder="Seleccionar Tipo de Identificación"
-        [(ngModel)]="cliente.identificacion"
-        name="identificacion"
+        [(ngModel)]="cliente.tipoIdentificacion"
+        name="tipoIdentificacion"
         required
       >
         <!-- Mostrar el tipo de identificación actual en modo de edición -->
-        <mat-option *ngIf="isEditing" [value]="cliente.identificacion">
-          {{ cliente.identificacion }}
+        <mat-option *ngIf="isEditing" [value]="cliente.tipoIdentificacion">
+          {{ getTipoIdentificacionDescripcion(cliente.tipoIdentificacion!) }}
         </mat-option>
 
         <!-- Mostrar todas las opciones disponibles -->
         <mat-option
           *ngFor="let tipos of tiposIdentificacion"
-          [value]="tipos.descripcion"
+          [value]="tipos.tipoIdentificacion"
         >
           {{ tipos.descripcion }}
         </mat-option>
       </mat-select>
+    </div>
+    
+    <div>
+      <label for="identificacion">Identificacion:</label>
+      <input
+        type="text"
+        id="identificacion"
+        [(ngModel)]="cliente.identificacion"
+        name="identificacion"
+        required
+      />
     </div>
     <div>
       <label for="razonSocial">Razón Social:</label>
