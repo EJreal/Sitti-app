@@ -127,7 +127,13 @@ export class FacturacionFormComponent implements OnInit {
   }
 
   guardarFactura() {
-    
+    if (this.selectedCliente) {
+      this.facturacionService.createFactura(this.factura).subscribe((facturaGuardada) => {
+        this.facturaItems.forEach((detalle) => (detalle.consecutivo = facturaGuardada.consecutivo));
+  
+        this.guardarDetallesFactura(0);
+      });
+    }
   }
   
   guardarDetallesFactura(index: number) {

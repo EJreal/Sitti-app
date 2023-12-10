@@ -1,33 +1,31 @@
-/* app.component.css */
-
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 200px;
-}
+/* app/menu/menu.component.css */
 
 .mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  justify-content:center;;
 }
 
-.app-title {
-  margin-left: 10px;
+.menu-title {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
-.content {
-  padding: 20px;
+.mat-toolbar .mat-mdc-list-base {
+  margin-left: 1em;
+  display: flex;
+}
+.mat-nav-list a {
+  width: auto;
+  text-decoration: none;
+  color: white;
+}
+.mat-mdc-list-item, .mat-mdc-list-option {
+  width: auto;
 }
 
-.footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #eee;
+.mat-nav-list a:hover {
+  background-color: gray;
 }
 
-.active {
-  background-color: #e0e0e0;
+.active-link {
+  background-color: white;
 }

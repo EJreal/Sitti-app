@@ -1,12 +1,13 @@
 <!-- app/menu/menu.component.html -->
 
 <mat-toolbar color="primary">
-  <span>Menú Principal</span>
-  <button mat-button routerLink="/clientes">Clientes</button>
-  <button mat-button routerLink="/productos">Productos</button>
-  <button mat-button routerLink="/usuarios">Usuarios</button>
-  <button mat-button routerLink="/facturacion">Facturación</button>
-
+  <span class="menu-title">Tareas</span>
+  <mat-nav-list>
+    <a mat-list-item routerLink="/clientes" routerLinkActive="active-link">Clientes</a>
+    <a mat-list-item routerLink="/productos" routerLinkActive="active-link">Productos</a>
+    <a mat-list-item routerLink="/usuarios" routerLinkActive="active-link">Usuarios</a>
+    <a mat-list-item routerLink="/facturacion" routerLinkActive="active-link">Facturación</a>
+  </mat-nav-list>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
