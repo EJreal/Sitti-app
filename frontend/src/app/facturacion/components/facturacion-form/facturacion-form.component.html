@@ -110,4 +110,8 @@
   <button (click)="guardarFactura()" class="btn btn-primary mt-3">
     Guardar Factura
   </button>
+
+  <div *ngIf="facturaCompletada" class="alert alert-success mt-3">
+    Facturación completada con éxito, revisa la data.
+  </div>
 </div>

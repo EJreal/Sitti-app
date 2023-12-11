@@ -33,8 +33,8 @@ export class FacturacionService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  createFacturaDetalle(detalles: FacturaDetalle): Observable<void> {
+  createFacturaDetalle(detalle: FacturaDetalle): Observable<FacturaDetalle> {
     const apiUrl = `${this.apiUrl}/detalle`;
-    return this.http.post<void>(apiUrl, detalles);
+    return this.http.post<FacturaDetalle>(apiUrl, detalle);
   }
 }

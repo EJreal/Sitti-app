@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { Factura, FacturaDetalle } from '../../../models/factura.model';
 import { Cliente, TipoIdentificacion } from '../../../models/cliente.model';
 import { Producto } from '../../../models/producto.model';
@@ -28,7 +30,11 @@ export class FacturacionFormComponent implements OnInit {
   cantidad: number | null = null;
   Total: number | null = null;
 
+  facturaCompletada: boolean = false;
+
+
   constructor(
+    private router: Router,
     private clienteService: ClienteService,
     private productoService: ProductoService,
     private facturacionService: FacturacionService,
@@ -128,25 +134,32 @@ export class FacturacionFormComponent implements OnInit {
 
   guardarFactura() {
     if (this.selectedCliente) {
-      this.facturacionService.createFactura(this.factura).subscribe((facturaGuardada) => {
-        this.facturaItems.forEach((detalle) => (detalle.consecutivo = facturaGuardada.consecutivo));
+      this.factura.cliente = this.selectedCliente.cliente;
+      this.factura.fecha = new Date();
   
-        this.guardarDetallesFactura(0);
+      this.facturacionService.createFactura(this.factura).subscribe((facturaCreada) => {
+        const consecutivoFactura = facturaCreada.consecutivo;
+  
+        this.facturaItems.forEach((detalle) => {
+          detalle.consecutivo = consecutivoFactura;
+        })
+        this.facturaCompletada = true;
       });
+
     }
+    console.log("Guardar Factura");
+    console.log(this.factura);
   }
-  
-  guardarDetallesFactura(index: number) {
-    if (index < this.facturaItems.length) {
-      // Guardar el detalle actual
-      this.facturacionService.createFacturaDetalle(this.facturaItems[index]).subscribe(() => {
-        // Llamada recursiva para procesar el siguiente detalle
-        this.guardarDetallesFactura(index + 1);
-      });
-    } else {
-      // Todos los detalles han sido guardados
-      this.loadClientes();
-    }
+
+  guardarFacturaItems() {
+    console.log("Guardar Factura Items");
+    console.log(this.facturaItems);
+
+    this.facturaItems.forEach((detalle) => {
+      this.facturacionService.createFacturaDetalle(detalle).subscribe((detalleCreado) => {
+        console.log(detalleCreado);
+      })
+    });
   }
   
 }

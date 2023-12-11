@@ -22,11 +22,12 @@ public class FacturaService {
         return facturaRepository.findById(id).orElse(null);
     }
 
-    public void saveFactura(Factura factura) {
-        facturaRepository.save(factura);
+    public Factura saveFactura(Factura factura) {
+        return facturaRepository.save(factura);
     }
 
     public void deleteFactura(Long id) {
         facturaRepository.deleteById(id);
     }
+    
 }

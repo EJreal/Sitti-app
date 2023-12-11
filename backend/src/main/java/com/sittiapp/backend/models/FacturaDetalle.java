@@ -10,7 +10,7 @@ public class FacturaDetalle {
     private Long consecutivo;
     private Long idProducto;
     private int cantidad;
-    private int valorUnitario;
+    private long valorUnitario;
 
     // Getters and setters
     public Long getConsecutivo() {
@@ -37,7 +37,7 @@ public class FacturaDetalle {
         this.cantidad = cantidad;
     }
 
-    public int getValorUnitario() {
+    public long getValorUnitario() {
         return valorUnitario;
     }
 
