@@ -7,12 +7,12 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("factura_detalle")
 public class FacturaDetalle {
     @Id
+    private long id;
     private Long consecutivo;
     private Long idProducto;
     private int cantidad;
     private long valorUnitario;
 
-    // Getters and setters
     public Long getConsecutivo() {
         return consecutivo;
     }
