@@ -34,6 +34,7 @@ export class FacturacionService {
   }
 
   createFacturaDetalle(detalle: FacturaDetalle): Observable<FacturaDetalle> {
+    console.log('detalle create', detalle);
     const apiUrl = `${this.apiUrl}/detalle`;
     return this.http.post<FacturaDetalle>(apiUrl, detalle);
   }

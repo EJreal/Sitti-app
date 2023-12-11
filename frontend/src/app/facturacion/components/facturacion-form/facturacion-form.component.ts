@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { Factura, FacturaDetalle } from '../../../models/factura.model';
 import { Cliente, TipoIdentificacion } from '../../../models/cliente.model';
 import { Producto } from '../../../models/producto.model';
@@ -32,6 +31,7 @@ export class FacturacionFormComponent implements OnInit {
 
   facturaCompletada: boolean = false;
 
+  facturas: Factura[] = [];
 
   constructor(
     private router: Router,
@@ -136,30 +136,39 @@ export class FacturacionFormComponent implements OnInit {
     if (this.selectedCliente) {
       this.factura.cliente = this.selectedCliente.cliente;
       this.factura.fecha = new Date();
-  
-      this.facturacionService.createFactura(this.factura).subscribe((facturaCreada) => {
-        const consecutivoFactura = facturaCreada.consecutivo;
-  
-        this.facturaItems.forEach((detalle) => {
-          detalle.consecutivo = consecutivoFactura;
-        })
-        this.facturaCompletada = true;
-      });
+      console.log('por createFactura');
 
+      this.facturacionService
+        .createFactura(this.factura)
+        .subscribe((facturaCreada) => {
+          const consecutivoFactura = facturaCreada.consecutivo;
+          console.log('facturaDetallesSinCnsecutivo', this.facturaItems);
+
+          this.facturacionService
+            .getFacturaById(consecutivoFactura!)
+            .subscribe((factura) => {
+              this.facturaCompletada = true;
+              console.log('facturabyid', factura);
+              this.facturaItems.forEach((detalle) => {
+                detalle.consecutivo = factura.consecutivo;
+              });
+              this.guardarFacturaItems();
+            });
+          console.log('termina CreateFactura');
+        });
     }
-    console.log("Guardar Factura");
-    console.log(this.factura);
   }
 
   guardarFacturaItems() {
-    console.log("Guardar Factura Items");
-    console.log(this.facturaItems);
+    console.log('Guardar Factura Items');
+
+    console.log('facturaDetallesConCnsecutivo', this.facturaItems);
 
     this.facturaItems.forEach((detalle) => {
-      this.facturacionService.createFacturaDetalle(detalle).subscribe((detalleCreado) => {
-        console.log(detalleCreado);
-      })
+      console.log('por facturaDetalle');
+      this.facturacionService.createFacturaDetalle(detalle).subscribe(() => {
+        console.log('termina facturaDetalle');
+      } );
     });
   }
-  
 }
