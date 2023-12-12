@@ -2,7 +2,7 @@
 Prueba-tecnica
 
 >[!TIP]
-Utiliza este Script para probar la App [Script de la base de datos de prueba](Sitii-app\script.sql](https://github.com/EJreal/Sitti-app/blob/036fcbadf1fa6850a5e48fbf879ffb2487ab3d6d/script.sql)
+Utiliza este Script para probar la App [Script de la base de datos de prueba](https://github.com/EJreal/Sitti-app/blob/036fcbadf1fa6850a5e48fbf879ffb2487ab3d6d/script.sql)
 
 >[!TIP]
 En application.properties cambia el puerto al de tu localhost.
